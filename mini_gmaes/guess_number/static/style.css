@@ -1,0 +1,359 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    color: #ffffff;
+    background: linear-gradient(135deg, #101936, #252052, #12365d);
+}
+
+.app {
+    max-width: 1250px;
+    margin: auto;
+    padding: 28px 24px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.eyebrow {
+    color: #8edcff;
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.header h1 {
+    font-size: clamp(34px, 5vw, 58px);
+    margin: 10px 0;
+}
+
+.header p {
+    color: #cbd5f1;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+}
+
+.setupPanel {
+    max-width: 900px;
+    margin: auto;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+    margin: 25px 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+textarea,
+input {
+    width: 100%;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    padding: 15px;
+    font-size: 19px;
+    font-family: inherit;
+    background: #f8faff;
+    color: #15203f;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 260px;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+    border-color: #45d4ff;
+}
+
+.smallText {
+    color: #b8c6e8;
+    font-size: 14px;
+}
+
+.instruction {
+    margin-top: 25px;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 16px;
+    line-height: 1.8;
+}
+
+.instruction h3 {
+    margin-top: 0;
+}
+
+.instruction p {
+    margin: 5px 0;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.primaryButton {
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #ffca45, #ff8b54);
+    padding: 17px 24px;
+    color: #272040;
+    font-size: 22px;
+    font-weight: 900;
+    box-shadow: 0 6px 18px rgba(255, 166, 58, 0.2);
+}
+
+.gameGrid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 25px;
+}
+
+.wheelPanel {
+    text-align: center;
+}
+
+.wheelFrame {
+    position: relative;
+    width: min(100%, 480px);
+    margin: 28px auto;
+}
+
+#wheel {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.3));
+}
+
+.wheelPointer {
+    position: absolute;
+    z-index: 2;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 42px solid #ffffff;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
+}
+
+.playPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.roundTag {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 10px 16px;
+    border-radius: 30px;
+    background: #403b83;
+    color: #cdd6ff;
+    font-weight: bold;
+}
+
+.chosenStudent {
+    font-size: clamp(25px, 3vw, 38px);
+    color: #ffe28a;
+    min-height: 100px;
+}
+
+.guessForm {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 18px;
+}
+
+.guessForm input {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.result {
+    min-height: 70px;
+    font-size: 44px;
+    font-weight: 900;
+    text-align: center;
+    color: #ffda73;
+}
+
+.result.isSuccess {
+    color: #70ffc5;
+    animation: pop 0.5s ease;
+}
+
+.historyPanel {
+    flex: 1;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.history {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.history li {
+    margin: 8px 0;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.ghostButton {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    background: transparent;
+    padding: 14px;
+    color: white;
+    font-size: 16px;
+}
+
+.errorMessage {
+    text-align: center;
+    color: #ff9fa4;
+    font-weight: bold;
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+/* 猜中慶祝畫面 */
+
+.winnerOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background: rgba(10, 13, 35, 0.91);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.winnerCard {
+    z-index: 2;
+    width: min(90%, 520px);
+    text-align: center;
+    padding: 45px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #453383, #213c77);
+    box-shadow: 0 0 70px rgba(255, 218, 85, 0.3);
+    animation: pop 0.65s ease;
+}
+
+.trophy {
+    font-size: 100px;
+    animation: bounce 1.2s infinite alternate;
+}
+
+.winnerCard h2 {
+    font-size: 44px;
+    color: #ffe47b;
+}
+
+.winnerName {
+    font-size: 48px;
+    font-weight: 900;
+    color: #87ffdc;
+}
+
+.confetti {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confettiPiece {
+    position: absolute;
+    top: -15vh;
+    width: 12px;
+    height: 20px;
+    opacity: 0.95;
+    animation: fall linear forwards;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-18px);
+    }
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+    to {
+        transform: translateY(125vh) rotate(800deg);
+    }
+}
+
+@media (max-width: 850px) {
+    .formGrid,
+    .gameGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .app {
+        padding: 18px 12px;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸運猜數字</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <header class="header">
+            <p class="eyebrow">CLASSROOM CHALLENGE</p>
+            <h1>🎯 幸運猜數字</h1>
+            <p>轉動命運之輪，看看誰能猜中神秘數字！</p>
+        </header>
+
+        <!-- 教師設定區 -->
+        <section id="setupPanel" class="panel setupPanel">
+
+            <h2>⚙️ 教師設定</h2>
+
+            <form id="setupForm" autocomplete="off">
+
+                <div class="formGrid">
+
+                    <div>
+                        <label for="students">學生名單（每行一位）</label>
+
+                        <textarea id="students" name="students" rows="10" placeholder="王小明&#10;陳小華&#10;林小美&#10;張小安"
+                            required></textarea>
+                    </div>
+
+                    <div class="answerSettings">
+
+                        <label for="answer">神秘數字</label>
+
+                        <input id="answer" name="answer" type="number" step="1" placeholder="輸入秘密答案" required>
+
+                        <p class="smallText">
+                            設定完成後，答案不會顯示在遊戲畫面上。
+                        </p>
+
+                        <div class="instruction">
+                            <h3>🎮 遊戲流程</h3>
+                            <p>① 貼上全班學生名單</p>
+                            <p>② 設定神秘數字</p>
+                            <p>③ 轉動轉盤抽出學生</p>
+                            <p>④ 輸入學生猜測的數字</p>
+                            <p>⑤ 猜中即可獲勝！</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button class="primaryButton" type="submit">
+                    開始遊戲 →
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- 遊戲進行區 -->
+        <section id="gamePanel" class="gamePanel is-hidden">
+
+            <div class="gameGrid">
+
+                <div class="panel wheelPanel">
+
+                    <h2>🎡 命運轉盤</h2>
+
+                    <div class="wheelFrame">
+                        <div class="wheelPointer"></div>
+                        <canvas id="wheel" width="600" height="600" aria-label="學生抽籤轉盤"></canvas>
+                    </div>
+
+                    <button id="spinButton" class="primaryButton" type="button">
+                        🎲 開始抽籤
+                    </button>
+
+                </div>
+
+                <div class="panel playPanel">
+
+                    <p class="roundTag">本回合挑戰者</p>
+
+                    <h2 id="chosenStudent" class="chosenStudent">
+                        準備抽出幸運同學！
+                    </h2>
+
+                    <form id="guessForm" class="guessForm is-hidden">
+
+                        <label for="guessInput">同學猜了多少？</label>
+
+                        <input id="guessInput" name="guess" type="number" step="1" placeholder="輸入猜測的數字" required>
+
+                        <button class="primaryButton" type="submit">
+                            確認答案
+                        </button>
+
+                    </form>
+
+                    <div id="result" class="result" role="status" aria-live="polite"></div>
+
+                    <div class="historyPanel">
+                        <h3>📋 猜測紀錄</h3>
+                        <ul id="history" class="history"></ul>
+                    </div>
+
+                    <button id="backButton" class="ghostButton" type="button">
+                        ⚙️ 重新設定遊戲
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <p id="errorMessage" class="errorMessage" role="alert"></p>
+
+    </main>
+
+    <!-- 猜中後的慶祝畫面 -->
+    <div id="winnerOverlay" class="winnerOverlay is-hidden" role="dialog" aria-modal="true"
+        aria-labelledby="winnerName">
+
+        <div id="confetti" class="confetti"></div>
+
+        <div class="winnerCard">
+            <div class="trophy">🏆</div>
+
+            <h2>恭喜猜中！</h2>
+
+            <p id="winnerName" class="winnerName"></p>
+
+            <p>你就是今天的猜數字之王！</p>
+
+            <button id="closeWinner" class="primaryButton" type="button">
+                返回遊戲
+            </button>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
