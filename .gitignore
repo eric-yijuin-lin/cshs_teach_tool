@@ -3,3 +3,7 @@
 /google_form/client_secrets.json
 /google_form/程式設計題庫 - 工作表1.csv
 /google_form/token.json
+
+# class schedule
+class_schedule/src/
+class_schedule/output/
